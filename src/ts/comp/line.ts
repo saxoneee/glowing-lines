@@ -3,10 +3,11 @@ export default class Line {
 
 	sprite:any = null;
 
-	getNextLineCoords(){
-		var _start = this.coords[0];
-		this.coords.splice(0,1);
+	addCoords(pCoords:any){
+		this.coords.push(pCoords);
 
-		return _start;
+		if(this.coords.length > 2){
+			// this.coords.splice(0,1);
+		}
 	}
 }
