@@ -46,8 +46,8 @@ export default class MainController {
 	}
 
 	initList(){
-		var _x = 40,
-			_y = 100,
+		var _x = -95,
+			_y = -10,
 			_xgl = _x + 20;
 		var _xgr = _xgl + 80;
 
@@ -114,16 +114,16 @@ export default class MainController {
 				stop: {x: 180 + _x, y: 230 + _y},
 				timeStart: 3
 			},
-			{
-				start: {x: 221 + _x, y: 230 + _y},
-				stop: {x: 199 + _x, y: 230 + _y},
-				timeStart: 5
-			},
-			{
-				start: {x: 179 + _x, y: 230 + _y},
-				stop: {x: 201 + _x, y: 230 + _y},
-				timeStart: 5
-			},
+			// {
+			// 	start: {x: 221 + _x, y: 230 + _y},
+			// 	stop: {x: 199 + _x, y: 230 + _y},
+			// 	timeStart: 5
+			// },
+			// {
+			// 	start: {x: 179 + _x, y: 230 + _y},
+			// 	stop: {x: 201 + _x, y: 230 + _y},
+			// 	timeStart: 5
+			// },
 			{
 				start: {x: 251 + _x, y: 199 + _y},
 				stop: {x: 220 + _x, y: 230 + _y},
