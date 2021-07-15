@@ -4,17 +4,29 @@ import {GlowFilter} from '@pixi/filter-glow';
 export default class Line {
 	coords:Array<any> = [];
 
+	seconds:number = 0;
+
+	tickCounter:number = 0;
+
 	sprite:any = null;
 
 	path:Array<any> = [];
 	start:any = null;
 	stop:any = null;
 
-	constructor(pStartCoords:any, pStopCoords:any, pContainer:any){
+	startSecond:number = 0;
+
+	glowDirection:number = 1;
+
+	constructor(pStartCoords:any, pStopCoords:any, pStartSecond:number, pContainer:any){
 		this._createSprite();
 		this.start = pStartCoords;
 		this.stop = pStopCoords;
 		this.path = this._calcWaypoints([this.start, this.stop]);
+
+		if(pStartSecond){
+			this.startSecond = pStartSecond;
+		}
 
 		pContainer.addChild(this.sprite);
 	}
@@ -28,8 +40,8 @@ export default class Line {
 		var glowfilter = new GlowFilter({
 			distance:20,
 			quality:1,
-			outerStrength: 8,
-			innerStrength: 1,
+			outerStrength: 7,
+			innerStrength: 0,
 			// color: 0xffff0f
 			color: 0xe0ff7a
 		})
@@ -57,6 +69,10 @@ export default class Line {
 	}
 
 	draw(){
+		if(this.startSecond > this.seconds){
+			return;
+		}
+
 		this.sprite.moveTo(this.start.x + 0.5, this.start.y + 0.5);
 
 		var _next = this.path.shift();
@@ -66,5 +82,14 @@ export default class Line {
 		}
 
 		this.sprite.lineTo(_next.x + 0.5, _next.y + 0.5);
+	}
+
+	tick(delta:number){
+		this.tickCounter++;
+
+		if(this.tickCounter === 60){
+			this.tickCounter = 0;
+			this.seconds++;
+		}
 	}
 }
