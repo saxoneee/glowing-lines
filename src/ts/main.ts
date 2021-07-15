@@ -3,6 +3,7 @@ import './bootstrap';
 import * as PIXI from 'pixi.js';
 
 import MainController from './controller/MainController';
+import OptionsController from './controller/OptionsController';
 
 // PIXI.Loader.shared.add('./src/assets/img/sprites.json').load(function(){startGame()});
 
@@ -17,13 +18,13 @@ function start(){
 		resolution: 1
 	});
 
-	//Add the canvas that Pixi automatically created for you to the HTML document
-	document.body.appendChild(app.view);
-
 	const main = new MainController();
-	const container = main.init(app.view.width, app.view.height);
+	const options = new OptionsController();
 
-	app.stage.addChild(container);
+	document.body.appendChild(app.view);
+	document.body.appendChild(options.getView());
+
+	app.stage.addChild(main.init(app.view.width, app.view.height));
 	app.ticker.add(delta => gameLoop(delta));
 
 	function gameLoop(delta:number){
