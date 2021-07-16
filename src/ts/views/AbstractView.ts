@@ -31,4 +31,10 @@ export class AbstractView{
 	getLines(){
 		return this.lines;
 	}
+
+	tick(delta:number){
+		for(var _i = 0; _i < this.lines.length; _i++){
+			this.lines[_i].tick(delta);
+		}
+	}
 }

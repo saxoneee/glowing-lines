@@ -10,7 +10,7 @@ export default class MainController {
 
 	tickCounter:number = 0;
 
-	lineList:Array<any> = [];
+	objectList:Array<any> = [];
 
 	last:any = {
 		x: 0,
@@ -26,36 +26,33 @@ export default class MainController {
 	}
 
 	start(){
-		var _list:Array<any> = [];
-
 		var _deer = new Deer(this.container),
 			_fox = new Fox(this.container);
 
-		_list = _list.concat(_deer.getLines());
-		_list = _list.concat(_fox.getLines());
-
-		for(var _i = 0; _i < _list.length; _i++){
-			this.lineList.push(_list[_i]);
-		}
+		this.objectList.push(_deer);
+		this.objectList.push(_fox);
 	}
 
 	tick(delta: number){
 		this.tickCounter++;
 
-		if(this.tickCounter%1 == 0){
-			for(let _index in this.lineList){
-				var _line = this.lineList[_index];
+		for(var _i = 0; _i < this.objectList.length; _i++){
+			this.objectList[_i].tick(delta);
+		}
 
-				_line.draw();
+		if(this.tickCounter%1 == 0){
+			for(let _index in this.objectList){
+				var _objectLines = this.objectList[_index].getLines();
+				// console.log(_objectLines);
+				for(var _o = 0; _o < _objectLines.length; _o++){
+					_objectLines[_o].draw();
+				}
+
 			}
 		}
 
 		if(this.tickCounter == 60){
 			this.tickCounter = 0;
-		}
-
-		for(var _i = 0; _i < this.lineList.length; _i++){
-			this.lineList[_i].tick(delta);
 		}
 	}
 
