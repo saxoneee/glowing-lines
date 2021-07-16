@@ -1,4 +1,6 @@
 import * as PIXI from 'pixi.js';
+import { Deer } from '../views/deer';
+import { Fox } from '../views/fox';
 
 
 import Line from './../comp/line';
@@ -17,10 +19,8 @@ export default class MainController {
 
 	init(pWidth:number, pHeight:number){
 		this.container = new PIXI.Container;
-		// this.initEvents();
 
-		this.initDeer();
-		this.initFox();
+		this.start();
 
 		return this.container;
 	}
@@ -46,256 +46,21 @@ export default class MainController {
 		}
 	}
 
-	initDeer(){
-		var _x = -95,
-			_y = -10,
-			_xgl = _x + 20;
-		var _xgr = _xgl + 80;
+	start(){
+		var _list:Array<any> = [];
 
-		var _list:Array<any> = [
-			// geweih links
-			{
-				start: {x: 125 + _xgl, y: 50 + _y},
-				stop: {x: 110 + _xgl, y: 20 + _y},
-				timeStart: 4
-			},
-			{
-				start: {x: 110 + _xgl, y: 80 + _y},
-				stop: {x: 140 + _xgl, y: 20 + _y},
-				timeStart: 3
-			},
-			{
-				start: {x: 120 + _xgl, y: 100 + _y},
-				stop: {x: 80 + _xgl, y: 80 + _y},
-				timeStart: 2
-			},
-			{
-				start: {x: 130 + _xgl, y: 120 + _y},
-				stop: {x: 140 + _xgl, y: 100 + _y},
-				timeStart: 2
-			},
-			{
-				start: {x: 135 + _xgl, y: 130 + _y},
-				stop: {x: 100 + _xgl, y: 60 + _y},
-				timeStart: 1
-			},
-			// geweih rechts
-			{
-				start: {x: 155 + _xgr, y: 50 + _y},
-				stop: {x: 170 + _xgr, y: 20 + _y},
-				timeStart: 4
-			},
-			{
-				start: {x: 170 + _xgr, y: 80 + _y},
-				stop: {x: 140 + _xgr, y: 20 + _y},
-				timeStart: 3
-			},
-			{
-				start: {x: 160 + _xgr, y: 100 + _y},
-				stop: {x: 200 + _xgr, y: 80 + _y},
-				timeStart: 2
-			},
-			{
-				start: {x: 150 + _xgr, y: 120 + _y},
-				stop: {x: 140 + _xgr, y: 100 + _y},
-				timeStart: 2
-			},
-			{
-				start: {x: 145 + _xgr, y: 130 + _y},
-				stop: {x: 180 + _xgr, y: 60 + _y},
-				timeStart: 1
-			},
-			// kopf
-			{
-				start: {x: 180 + _x, y: 140 + _y},
-				stop: {x: 150 + _x, y: 200 + _y},
-			},
-			{
-				start: {x: 150 + _x, y: 200 + _y},
-				stop: {x: 180 + _x, y: 230 + _y},
-				timeStart: 3
-			},
-			// {
-			// 	start: {x: 221 + _x, y: 230 + _y},
-			// 	stop: {x: 199 + _x, y: 230 + _y},
-			// 	timeStart: 5
-			// },
-			// {
-			// 	start: {x: 179 + _x, y: 230 + _y},
-			// 	stop: {x: 201 + _x, y: 230 + _y},
-			// 	timeStart: 5
-			// },
-			{
-				start: {x: 251 + _x, y: 199 + _y},
-				stop: {x: 220 + _x, y: 230 + _y},
-				timeStart: 3
-			},
-			{
-				start: {x: 220 + _x, y: 140 + _y},
-				stop: {x: 250 + _x, y: 200 + _y},
-			},
-			// sonnenbrille links
-			{
-				start: {x: 170 + _x, y: 140 + _y},
-				stop: {x: 120 + _x, y: 140 + _y},
-				timeStart: 0
-			},
-			{
-				start: {x: 120 + _x, y: 140 + _y},
-				stop: {x: 160 + _x, y: 160 + _y},
-				timeStart: 2
-			},
-			// sonnenbrille rechts
-			{
-				start: {x: 230 + _x, y: 140 + _y},
-				stop: {x: 280 + _x, y: 140 + _y},
-				timeStart: 0
-			},
-			{
-				start: {x: 280 + _x, y: 140 + _y},
-				stop: {x: 240 + _x, y: 160 + _y},
-				timeStart: 2
-			},
-			// nase
-			{
-				start: {x: 199 + _x, y: 200 + _y},
-				stop: {x: 240 + _x, y: 200 + _y},
-				timeStart: 4
-			},
-			{
-				start: {x: 201 + _x, y: 200 + _y},
-				stop: {x: 160 + _x, y: 200 + _y},
-				timeStart: 4
-			},
-		];
+		var _deer = new Deer(),
+			_fox = new Fox();
+
+		_list = _list.concat(_deer.getCoords());
+		_list = _list.concat(_fox.getCoords());
 
 		for(var _i = 0; _i < _list.length; _i++){
-			// this.lineList.push(new Line(_list[_i].start, _list[_i].stop, _list[_i].timeStart, this.container));
 			this.lineList.push(new Line({
 				startCoords: _list[_i].start,
 				stopCoords: _list[_i].stop,
 				startSecond: _list[_i].timeStart,
 				animation: true,
-				container: this.container
-			}));
-		}
-	}
-
-	initFox(){
-		var _x:number = 0,
-			_y:number = 0,
-			_list:Array<any> = [
-				// kopf
-			{
-				start: {x: 70 + _x, y: 300 + _y},
-				stop: {x: 140 + _x, y: 300 + _y},
-				timeStart: 1,
-				animation:true
-			},
-			{
-				start: {x: 140 + _x, y: 300 + _y},
-				stop: {x: 161 + _x, y: 321 + _y},
-				timeStart: 3,
-				animation:true
-			},
-			{
-				start: {x: 70 + _x, y: 300 + _y},
-				stop: {x: 50 + _x, y: 320 + _y},
-				timeStart: 1,
-				animation:true
-			},
-			{
-				start: {x: 50 + _x, y: 320 + _y},
-				stop: {x: 90 + _x, y: 360 + _y},
-				timeStart: 2,
-				animation:true
-			},
-			{
-				start: {x: 160 + _x, y: 320 + _y},
-				stop: {x: 120 + _x, y: 360 + _y},
-				timeStart: 3,
-				animation:true
-			},
-
-			// nase
-			{
-				start: {x: 95 + _x, y: 350 + _y},
-				stop: {x: 115 + _x, y: 350 + _y},
-				timeStart: 3,
-				animation:true
-			},
-			{
-				start: {x: 95 + _x, y: 350 + _y},
-				stop: {x: 100 + _x, y: 355 + _y},
-				// stop: {x: 100 + _x, y: 355 + _y},
-				timeStart: 4,
-				animation:true
-			},
-			{
-				start: {x: 115 + _x, y: 350 + _y},
-				stop: {x: 110 + _x, y: 355 + _y},
-				timeStart: 4,
-				animation:true
-			},
-			// ohr links
-			{
-				start: {x: 45 + _x, y: 260 + _y},
-				stop: {x: 75 + _x, y: 290 + _y},
-				timeStart: 0,
-				animation:true
-			},
-			{
-				start: {x: 45 + _x, y: 260 + _y},
-				stop: {x: 45 + _x, y: 310 + _y},
-				timeStart: 0,
-				animation:true
-			},
-			// ohr rechts
-			{
-				start: {x: 135 + _x, y: 290 + _y},
-				stop: {x: 165 + _x, y: 260 + _y},
-				timeStart: 3,
-				animation:true
-			},
-			{
-				start: {x: 165 + _x, y: 310 + _y},
-				stop: {x: 165 + _x, y: 260 + _y},
-				timeStart: 4,
-				animation:true
-			},
-			// körper
-			{
-				start: {x: 140 + _x, y: 350 + _y},
-				stop: {x: 151 + _x, y: 361 + _y},
-				timeStart: 4,
-				animation:true
-			},
-			{
-				start: {x: 150 + _x, y: 360 + _y},
-				stop: {x: 120 + _x, y: 390 + _y},
-				timeStart: 5,
-				animation:true
-			},
-			{
-				start: {x: 70 + _x, y: 350 + _y},
-				stop: {x: 60 + _x, y: 360 + _y},
-				timeStart: 3,
-				animation:true
-			},
-			{
-				start: {x: 60 + _x, y: 360 + _y},
-				stop: {x: 90 + _x, y: 390 + _y},
-				timeStart: 4,
-				animation:true
-			},
-		];
-
-		for(var _i = 0; _i < _list.length; _i++){
-			this.lineList.push(new Line({
-				startCoords: _list[_i].start,
-				stopCoords: _list[_i].stop,
-				startSecond: _list[_i].timeStart,
-				animation: _list[_i].animation,
 				container: this.container
 			}));
 		}
