@@ -25,6 +25,19 @@ export default class MainController {
 		return this.container;
 	}
 
+	start(){
+		var _list:Array<any> = [];
+
+		var _deer = new Deer(this.container),
+			_fox = new Fox(this.container);
+
+		_list = _list.concat(_deer.getLines());
+		_list = _list.concat(_fox.getLines());
+
+		for(var _i = 0; _i < _list.length; _i++){
+			this.lineList.push(_list[_i]);
+		}
+	}
 
 	tick(delta: number){
 		this.tickCounter++;
@@ -46,23 +59,4 @@ export default class MainController {
 		}
 	}
 
-	start(){
-		var _list:Array<any> = [];
-
-		var _deer = new Deer(),
-			_fox = new Fox();
-
-		_list = _list.concat(_deer.getCoords());
-		_list = _list.concat(_fox.getCoords());
-
-		for(var _i = 0; _i < _list.length; _i++){
-			this.lineList.push(new Line({
-				startCoords: _list[_i].start,
-				stopCoords: _list[_i].stop,
-				startSecond: _list[_i].timeStart,
-				animation: true,
-				container: this.container
-			}));
-		}
-	}
 }

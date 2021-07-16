@@ -1,7 +1,8 @@
 import { AbstractView } from "./AbstractView";
 
 export class Fox extends AbstractView{
-	getCoords(){
+
+	init(){
 		var _x:number = 0,
 			_y:number = 0,
 			_list:Array<any> = [
@@ -110,6 +111,6 @@ export class Fox extends AbstractView{
 			},
 		];
 
-		return _list;
+		this.lines = this.generateLines(_list);
 	}
 }

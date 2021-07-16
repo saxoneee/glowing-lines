@@ -1,7 +1,8 @@
 import { AbstractView } from "./AbstractView";
 
 export class Deer extends AbstractView{
-	getCoords(){
+
+	init(){
 		var _x = -95,
 			_y = -10,
 			_xgl = _x + 20;
@@ -124,6 +125,6 @@ export class Deer extends AbstractView{
 			},
 		];
 
-		return _list;
+		this.lines = this.generateLines(_list);
 	}
 }
