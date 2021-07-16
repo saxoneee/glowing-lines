@@ -19,7 +19,8 @@ export default class MainController {
 		this.container = new PIXI.Container;
 		// this.initEvents();
 
-		this.initList();
+		this.initDeer();
+		// this.initFox();
 
 		return this.container;
 	}
@@ -45,7 +46,7 @@ export default class MainController {
 		}
 	}
 
-	initList(){
+	initDeer(){
 		var _x = -95,
 			_y = -10,
 			_xgl = _x + 20;
@@ -169,7 +170,28 @@ export default class MainController {
 		];
 
 		for(var _i = 0; _i < _list.length; _i++){
-			this.lineList.push(new Line(_list[_i].start, _list[_i].stop, _list[_i].timeStart, this.container));
+			// this.lineList.push(new Line(_list[_i].start, _list[_i].stop, _list[_i].timeStart, this.container));
+			this.lineList.push(new Line({
+				startCoords: _list[_i].start,
+				stopCoords: _list[_i].stop,
+				startSecond: _list[_i].timeStart,
+				animation: false,
+				container: this.container
+			}));
+		}
+	}
+
+	initFox(){
+		var _list:Array<any> = [];
+
+		for(var _i = 0; _i < _list.length; _i++){
+			this.lineList.push(new Line({
+				startCoords: _list[_i].start,
+				stopCoords: _list[_i].stop,
+				startSecond: _list[_i].timeStart,
+				animation: true,
+				container: this.container
+			}));
 		}
 	}
 }

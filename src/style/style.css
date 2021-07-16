@@ -15,7 +15,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', end
 	color:#fff;
 }
 canvas{
-    /* box-shadow:0 0 2px red; */
+    box-shadow:0 0 2px white;
 	display:block;
 	margin:0 auto;
 }

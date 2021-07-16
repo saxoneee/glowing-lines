@@ -1,5 +1,7 @@
 import * as PIXI from 'pixi.js';
 import {GlowFilter} from '@pixi/filter-glow';
+import { LineConfig } from './lineconfig.interface';
+
 
 export default class Line {
 	coords:Array<any> = [];
@@ -18,17 +20,21 @@ export default class Line {
 
 	glowDirection:number = 1;
 
-	constructor(pStartCoords:any, pStopCoords:any, pStartSecond:number, pContainer:any){
+	constructor(pConfig:LineConfig){
 		this._createSprite();
-		this.start = pStartCoords;
-		this.stop = pStopCoords;
-		this.path = this._calcWaypoints([this.start, this.stop]);
-
-		if(pStartSecond){
-			this.startSecond = pStartSecond;
+		this.start = pConfig.startCoords;
+		this.stop = pConfig.stopCoords;
+		if(pConfig.animation){
+			this.path = this._calcWaypoints([this.start, this.stop]);
+		}else{
+			this.path = [this.start, this.stop];
 		}
 
-		pContainer.addChild(this.sprite);
+		if(pConfig.startSecond){
+			this.startSecond = pConfig.startSecond;
+		}
+
+		pConfig.container.addChild(this.sprite);
 	}
 
 	_createSprite(){

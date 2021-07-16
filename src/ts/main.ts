@@ -12,7 +12,7 @@ function start(){
 	//Create a Pixi Application
 	let app = new PIXI.Application({
 		width: 210,
-		height: 230,
+		height: 430,
 		antialias: true,
 		backgroundAlpha: 0,
 		resolution: 1
