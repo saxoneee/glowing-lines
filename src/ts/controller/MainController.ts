@@ -10,6 +10,8 @@ export default class MainController {
 
 	tickCounter:number = 0;
 
+	seconds:number = 0;
+
 	objectList:Array<any> = [];
 
 	last:any = {
@@ -51,7 +53,13 @@ export default class MainController {
 			}
 		}
 
+		if(this.seconds === 6 && this.objectList[0]){
+			this.objectList[0].turnTo(this.objectList[1].getLines());
+		}
+
+
 		if(this.tickCounter == 60){
+			this.seconds++;
 			this.tickCounter = 0;
 		}
 	}

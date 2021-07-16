@@ -8,6 +8,8 @@ export default class Line {
 
 	seconds:number = 0;
 
+	busy:boolean = true;
+
 	tickCounter:number = 0;
 
 	sprite:any = null;
@@ -92,13 +94,13 @@ export default class Line {
 			return;
 		}
 
-
-
 		var _next = this.path.shift();
+
 
 		if(!_next){
 			return;
 		}
+		console.log('ASD');
 
 		this.sprite.clear();
 		this.sprite.beginFill(0xffffff);

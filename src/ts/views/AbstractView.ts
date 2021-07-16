@@ -4,6 +4,7 @@ export class AbstractView{
 
 	container:any;
 	lines:Array<Line>;
+	busy:boolean = false;
 
 	constructor(pContainer:any){
 		this.container = pContainer;
@@ -36,6 +37,15 @@ export class AbstractView{
 	tick(delta:number){
 		for(var _i = 0; _i < this.lines.length; _i++){
 			this.lines[_i].tick(delta);
+			this.busy = this.lines[_i].busy;
 		}
+		if(!this.busy){
+
+			// console.log(this.constructor.name, this.busy);
+		}
+	}
+
+	turnTo(pLines:Array<Line>){
+		// console.log(pLines);
 	}
 }
