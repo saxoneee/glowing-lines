@@ -22,10 +22,25 @@ export default class Line {
 
 	constructor(pConfig:LineConfig){
 		this._createSprite();
-		this.start = pConfig.startCoords;
-		this.stop = pConfig.stopCoords;
+
+		var _start, _stop;
+
+
 		if(pConfig.animation){
-			this.path = this._calcWaypoints([this.start, this.stop]);
+			if(pConfig.stopCoords){
+				_start = this._calcWaypoints([pConfig.startCoords[0], pConfig.stopCoords[0]]);
+				_stop = this._calcWaypoints([pConfig.startCoords[1], pConfig.stopCoords[1]]);
+				for(var _i = 0; _i < _start.length; _i++){
+					this.path.push([_start[_i], _stop[_i]]);
+				}
+			}else{
+				_start = this._calcWaypoints([pConfig.startCoords[0], pConfig.startCoords[1]]);
+
+				for(var _i = 0; _i < _start.length; _i++){
+					this.path.push([_start[0], _start[_i]]);
+				}
+			}
+
 		}else{
 			this.path = [this.start, this.stop];
 		}
@@ -39,9 +54,6 @@ export default class Line {
 
 	_createSprite(){
 		var _sprite = new PIXI.Graphics();
-
-		_sprite.beginFill(0xffffff);
-		_sprite.lineStyle(1, 0xffffff);
 
 		var glowfilter = new GlowFilter({
 			distance:20,
@@ -75,11 +87,12 @@ export default class Line {
 	}
 
 	draw(){
+		// console.log(this.seconds);
 		if(this.startSecond > this.seconds){
 			return;
 		}
 
-		this.sprite.moveTo(this.start.x + 0.5, this.start.y + 0.5);
+
 
 		var _next = this.path.shift();
 
@@ -87,7 +100,12 @@ export default class Line {
 			return;
 		}
 
-		this.sprite.lineTo(_next.x + 0.5, _next.y + 0.5);
+		this.sprite.clear();
+		this.sprite.beginFill(0xffffff);
+		this.sprite.lineStyle(1, 0xffffff);
+
+		this.sprite.moveTo(_next[0].x + 0.5, _next[0].y + 0.5);
+		this.sprite.lineTo(_next[1].x + 0.5, _next[1].y + 0.5);
 	}
 
 	tick(delta:number){
