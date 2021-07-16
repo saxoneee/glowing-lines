@@ -28,13 +28,13 @@ export default class Line {
 
 		if(pConfig.animation){
 			if(pConfig.stopCoords){
-				_start = this._calcWaypoints([pConfig.startCoords[0], pConfig.stopCoords[0]]);
-				_stop = this._calcWaypoints([pConfig.startCoords[1], pConfig.stopCoords[1]]);
+				_start = this._calcWaypoints([pConfig.startCoords[0], pConfig.stopCoords[0]], pConfig.stepCount);
+				_stop = this._calcWaypoints([pConfig.startCoords[1], pConfig.stopCoords[1]], pConfig.stepCount);
 				for(var _i = 0; _i < _start.length; _i++){
 					this.path.push([_start[_i], _stop[_i]]);
 				}
 			}else{
-				_start = this._calcWaypoints([pConfig.startCoords[0], pConfig.startCoords[1]]);
+				_start = this._calcWaypoints([pConfig.startCoords[0], pConfig.startCoords[1]], pConfig.stepCount);
 
 				for(var _i = 0; _i < _start.length; _i++){
 					this.path.push([_start[0], _start[_i]]);
@@ -69,7 +69,7 @@ export default class Line {
 		this.sprite = _sprite;
 	}
 
-	_calcWaypoints(pWaypoint:any){
+	_calcWaypoints(pWaypoint:any, pStepCount:number = 100){
 		var _waypoints=[];
 		// debugger;
 		for(var i=1;i<pWaypoint.length;i++){
@@ -77,9 +77,9 @@ export default class Line {
 			var pt1=pWaypoint[i];
 			var dx=pt1.x-pt0.x;
 			var dy=pt1.y-pt0.y;
-			for(var j=0;j<100;j++){
-				var x=pt0.x+dx*j/100;
-				var y=pt0.y+dy*j/100;
+			for(var j=0;j<pStepCount;j++){
+				var x=pt0.x+dx*j/pStepCount;
+				var y=pt0.y+dy*j/pStepCount;
 				_waypoints.push({x:x,y:y});
 			}
 		}

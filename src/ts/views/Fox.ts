@@ -36,17 +36,20 @@ export class Fox extends AbstractView{
 				{
 					start: [{x: 95 + _x, y: 350 + _y}, {x: 95 + _x, y: 350 + _y}],
 					stop: [{x: 95 + _x, y: 350 + _y}, {x: 115 + _x, y: 350 + _y}],
-					timeStart: 3,
+					timeStart: 4,
+					stepCount:20
 				},
 				{
 					start: [{x: 95 + _x, y: 350 + _y}, {x: 95 + _x, y: 350 + _y}],
 					stop: [{x: 95 + _x, y: 350 + _y}, {x: 100 + _x, y: 355 + _y}],
 					timeStart: 4,
+					stepCount:10
 				},
 				{
 					start: [{x: 115 + _x, y: 350 + _y}, {x: 115 + _x, y: 350 + _y}],
 					stop: [{x: 115 + _x, y: 350 + _y}, {x: 110 + _x, y: 355 + _y}],
 					timeStart: 4,
+					stepCount:10
 				},
 				// ohr links
 				{
@@ -73,23 +76,27 @@ export class Fox extends AbstractView{
 				// körper
 				{
 					start: [{x: 140 + _x, y: 350 + _y}, {x: 140 + _x, y: 350 + _y}],
-					stop: [{x: 140 + _x, y: 350 + _y}, {x: 151 + _x, y: 361 + _y}],
+					stop: [{x: 140 + _x, y: 350 + _y}, {x: 150 + _x, y: 360 + _y}],
 					timeStart: 4,
+					stepCount:50
 				},
 				{
-					start: [{x: 150 + _x, y: 360 + _y}, {x: 150 + _x, y: 360 + _y}],
-					stop: [{x: 150 + _x, y: 360 + _y}, {x: 120 + _x, y: 390 + _y}],
+					start: [{x: 149 + _x, y: 359 + _y}, {x: 149 + _x, y: 359 + _y}],
+					stop: [{x: 149 + _x, y: 359 + _y}, {x: 119 + _x, y: 389 + _y}],
 					timeStart: 5,
+					stepCount: 50
 				},
 				{
 					start: [{x: 70 + _x, y: 350 + _y}, {x: 70 + _x, y: 350 + _y}],
 					stop: [{x: 70 + _x, y: 350 + _y}, {x: 60 + _x, y: 360 + _y}],
 					timeStart: 3,
+					stepCount:50
 				},
 				{
 					start: [{x: 60 + _x, y: 360 + _y}, {x: 60 + _x, y: 360 + _y}],
 					stop: [{x: 60 + _x, y: 360 + _y}, {x: 90 + _x, y: 390 + _y}],
 					timeStart: 4,
+					stepCount:50
 				},
 		];
 

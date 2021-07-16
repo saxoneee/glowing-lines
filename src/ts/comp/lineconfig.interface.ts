@@ -3,5 +3,6 @@ export interface LineConfig{
 	stopCoords:any,
 	startSecond:number,
 	container:any,
-	animation:boolean
+	animation:boolean,
+	stepCount:number
 }
