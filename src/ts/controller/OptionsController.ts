@@ -5,33 +5,26 @@ export default class OptionsController {
 		this.view = document.createElement('div');
 		this.view.classList.add('options');
 
-		var radio1:HTMLInputElement = document.createElement('input');
-		var radio2:HTMLInputElement = document.createElement('input');
-		var radio3:HTMLInputElement = document.createElement('input');
-		var label1:HTMLLabelElement = document.createElement('label');
-		var label2:HTMLLabelElement = document.createElement('label');
-		var label3:HTMLLabelElement = document.createElement('label');
+		this.view.appendChild(this.getOption('Deer', 'deer', false));
+		this.view.appendChild(this.getOption('Fox', 'fox', false));
+		this.view.appendChild(this.getOption('Skyline', 'skyline', false));
+		this.view.appendChild(this.getOption('Morph', 'morph', true));
 
-		radio1.name = 'sketch';
-		radio1.type = 'radio';
-		radio1.value = 'deer';
-		radio2.name = 'sketch';
-		radio2.type = 'radio';
-		radio2.value = 'fox';
-		radio2.checked = true;
-		radio3.name = 'sketch';
-		radio3.type = 'radio';
-		radio3.value = 'skyline';
+	}
 
-		label1.appendChild(radio1);
-		label1.appendChild(document.createTextNode('deer'));
-		label2.appendChild(radio2);
-		label2.appendChild(document.createTextNode('fox'));
-		label3.appendChild(radio3);
-		label3.appendChild(document.createTextNode('skyline'));
-		this.view.appendChild(label1);
-		this.view.appendChild(label2);
-		this.view.appendChild(label3);
+	getOption(pLabel:string,pValue:string,pChecked:boolean = false){
+		var radio:HTMLInputElement = document.createElement('input'),
+			label:HTMLLabelElement = document.createElement('label');
+
+		radio.name = 'sketch';
+		radio.type = 'radio';
+		radio.value = pValue;
+		radio.checked = pChecked;
+
+		label.appendChild(radio);
+		label.appendChild(document.createTextNode(pLabel));
+
+		return label;
 	}
 
 	getView(){
