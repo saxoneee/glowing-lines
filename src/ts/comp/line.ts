@@ -61,29 +61,28 @@ export default class Line {
 	}
 
 	_calcWaypoints(pWaypoint:any, pStepCount:number = 100){
-		var _waypoints=[];
-		// debugger;
+		var _waypoints=[],
+			_last = pWaypoint[1];
+
 		for(var i=1;i<pWaypoint.length;i++){
 			var pt0=pWaypoint[i-1];
 			var pt1=pWaypoint[i];
 			var dx=pt1.x-pt0.x;
 			var dy=pt1.y-pt0.y;
-			for(var j=0;j<pStepCount;j++){
+			for(var j=0;j<pStepCount-1;j++){
 				var x=pt0.x+dx*j/pStepCount;
 				var y=pt0.y+dy*j/pStepCount;
 				_waypoints.push({x:x,y:y});
 			}
 		}
+		_waypoints.push(_last);
 		return _waypoints;
 	}
 
 	draw(){
-		// console.log(this.seconds);
 		if(this.startSecond > this.seconds){
 			return;
 		}
-
-
 
 		var _next = this.path.shift();
 
@@ -95,6 +94,7 @@ export default class Line {
 		this.sprite.beginFill(0xffffff);
 		this.sprite.lineStyle(1, 0xffffff);
 
+		// console.log('draw', _next[0], _next[1]);
 		this.sprite.moveTo(_next[0].x + 0.5, _next[0].y + 0.5);
 		this.sprite.lineTo(_next[1].x + 0.5, _next[1].y + 0.5);
 	}
