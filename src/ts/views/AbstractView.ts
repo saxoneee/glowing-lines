@@ -20,7 +20,7 @@ export class AbstractView{
 				startCoords: pList[_i].start,
 				stopCoords: pList[_i].stop,
 				startSecond: pList[_i].timeStart,
-				animation: true,
+				animation: pList[_i].animation,
 				container: this.container,
 				stepCount: pList[_i].stepCount || 100
 			}));

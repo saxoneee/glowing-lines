@@ -27,22 +27,13 @@ export default class Line {
 
 
 		if(pConfig.animation){
-			if(pConfig.stopCoords){
-				_start = this._calcWaypoints([pConfig.startCoords[0], pConfig.stopCoords[0]], pConfig.stepCount);
-				_stop = this._calcWaypoints([pConfig.startCoords[1], pConfig.stopCoords[1]], pConfig.stepCount);
-				for(var _i = 0; _i < _start.length; _i++){
-					this.path.push([_start[_i], _stop[_i]]);
-				}
-			}else{
-				_start = this._calcWaypoints([pConfig.startCoords[0], pConfig.startCoords[1]], pConfig.stepCount);
-
-				for(var _i = 0; _i < _start.length; _i++){
-					this.path.push([_start[0], _start[_i]]);
-				}
+			_start = this._calcWaypoints([pConfig.startCoords[0], pConfig.stopCoords[0]], pConfig.stepCount);
+			_stop = this._calcWaypoints([pConfig.startCoords[1], pConfig.stopCoords[1]], pConfig.stepCount);
+			for(var _i = 0; _i < _start.length; _i++){
+				this.path.push([_start[_i], _stop[_i]]);
 			}
-
 		}else{
-			this.path = [this.start, this.stop];
+			this.path = [pConfig.stopCoords];
 		}
 
 		if(pConfig.startSecond){
