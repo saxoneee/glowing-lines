@@ -15,10 +15,10 @@ export default class OptionsController {
 		radio1.name = 'sketch';
 		radio1.type = 'radio';
 		radio1.value = 'deer';
-		radio1.checked = true;
 		radio2.name = 'sketch';
 		radio2.type = 'radio';
 		radio2.value = 'fox';
+		radio2.checked = true;
 		radio3.name = 'sketch';
 		radio3.type = 'radio';
 		radio3.value = 'skyline';

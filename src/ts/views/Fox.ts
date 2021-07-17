@@ -3,8 +3,8 @@ import { AbstractView } from "./AbstractView";
 export class Fox extends AbstractView{
 
 	init(){
-		var _x:number = 0,
-			_y:number = 0,
+		var _x:number = 100,
+			_y:number = -200,
 			_list:Array<any> = [
 				// kopf
 				{

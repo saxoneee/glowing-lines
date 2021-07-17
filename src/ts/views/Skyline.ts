@@ -3,7 +3,7 @@ import { AbstractView } from "./AbstractView";
 export class Skyline extends AbstractView{
 
 	init(){
-		var _x = 0,
+		var _x = -50,
 			_y = 0;
 
 		var _list:Array<any> = [

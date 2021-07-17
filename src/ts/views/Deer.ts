@@ -3,8 +3,8 @@ import { AbstractView } from "./AbstractView";
 export class Deer extends AbstractView{
 
 	init(){
-		var _x = -95,
-			_y = -10,
+		var _x = -5,
+			_y = 20,
 			_xgl = _x + 20;
 		var _xgr = _xgl + 80;
 

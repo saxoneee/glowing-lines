@@ -11,7 +11,7 @@ import OptionsController from './controller/OptionsController';
 function start(){
 	//Create a Pixi Application
 	let app = new PIXI.Application({
-		width: 450,
+		width: 400,
 		height: 430,
 		antialias: true,
 		backgroundAlpha: 0,
