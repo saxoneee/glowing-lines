@@ -11,7 +11,7 @@ import OptionsController from './controller/OptionsController';
 function start(){
 	//Create a Pixi Application
 	let app = new PIXI.Application({
-		width: 210,
+		width: 450,
 		height: 430,
 		antialias: true,
 		backgroundAlpha: 0,
@@ -19,8 +19,10 @@ function start(){
 	});
 
 	const main = new MainController();
+	const options = new OptionsController();
 
 	document.body.appendChild(app.view);
+	document.body.appendChild(options.view);
 
 	app.stage.addChild(main.init(app.view.width, app.view.height));
 	app.ticker.add(delta => gameLoop(delta));

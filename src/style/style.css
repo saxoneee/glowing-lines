@@ -15,36 +15,22 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', end
 	color:#fff;
 }
 canvas{
-    /* box-shadow:0 0 2px white; */
+    box-shadow:0 0 2px white;
 	display:block;
 	margin:0 auto;
 }
 
-#options{
-    display:none;
-    position:absolute;
-    top:10px;
-    left:10px;
-    background:#fff;
+.options{
+    position:relative;
     padding:10px;
-    border:1px solid #555;
 }
-
-#options span{
-    display:inline-block;
-    text-align:right;
-    width:200px;
-    vertical-align:top;
-    margin-right:5px;
+.options input{
+	display:line-block;
+	margin-right:5px;
+	vertical-align: middle;
 }
-
-#options label{
-    display:block;
-}
-#options input{
-    vertical-align: middle;
-}
-
-#options input[name="fps"]{
-    width:50px;
+.options label{
+	display:line-block;
+	vertical-align: top;
+	margin-right:10px;
 }
