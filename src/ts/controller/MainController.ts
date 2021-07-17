@@ -2,6 +2,7 @@ import * as PIXI from 'pixi.js';
 import { AbstractView } from '../views/AbstractView';
 import { Deer } from '../views/deer';
 import { Fox } from '../views/fox';
+import { Skyline } from '../views/Skyline';
 
 
 import Line from './../comp/line';
@@ -67,7 +68,9 @@ export default class MainController {
 			case 'fox':
 				_object = new Fox(this.container);
 			break;
-			case 'skyline': break;
+			case 'skyline':
+				_object = new Skyline(this.container);
+			break;
 			default:
 				console.error('wat?');
 		}
