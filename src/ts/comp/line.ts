@@ -6,6 +6,8 @@ import { LineConfig } from './lineconfig.interface';
 export default class Line {
 	coords:Array<any> = [];
 
+	config:LineConfig;
+
 	seconds:number = 0;
 
 	tickCounter:number = 0;
@@ -21,26 +23,31 @@ export default class Line {
 	glowDirection:number = 1;
 
 	constructor(pConfig:LineConfig){
+		this.config = pConfig;
+	}
+
+	init(){
 		this._createSprite();
 
-		var _start, _stop;
+		var _start, _stop,
+			_cfg = this.config;
 
 
-		if(pConfig.animation){
-			_start = this._calcWaypoints([pConfig.startCoords[0], pConfig.stopCoords[0]], pConfig.stepCount);
-			_stop = this._calcWaypoints([pConfig.startCoords[1], pConfig.stopCoords[1]], pConfig.stepCount);
+		if(this.config.animation){
+			_start = this._calcWaypoints([_cfg.startCoords[0], _cfg.stopCoords[0]], _cfg.stepCount);
+			_stop = this._calcWaypoints([_cfg.startCoords[1], _cfg.stopCoords[1]], _cfg.stepCount);
 			for(var _i = 0; _i < _start.length; _i++){
 				this.path.push([_start[_i], _stop[_i]]);
 			}
 		}else{
-			this.path = [pConfig.stopCoords];
+			this.path = [_cfg.stopCoords];
 		}
 
-		if(pConfig.startSecond){
-			this.startSecond = pConfig.startSecond;
+		if(_cfg.startSecond){
+			this.startSecond = _cfg.startSecond;
 		}
 
-		pConfig.container.addChild(this.sprite);
+		_cfg.container.addChild(this.sprite);
 	}
 
 	_createSprite(){
@@ -87,6 +94,7 @@ export default class Line {
 		var _next = this.path.shift();
 
 		if(!_next){
+
 			return;
 		}
 
@@ -97,6 +105,8 @@ export default class Line {
 		// console.log('draw', _next[0], _next[1]);
 		this.sprite.moveTo(_next[0].x + 0.5, _next[0].y + 0.5);
 		this.sprite.lineTo(_next[1].x + 0.5, _next[1].y + 0.5);
+
+		this.sprite.endFill();
 	}
 
 	tick(delta:number){

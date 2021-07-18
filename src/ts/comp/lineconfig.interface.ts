@@ -4,5 +4,5 @@ export interface LineConfig{
 	startSecond:number,
 	container:any,
 	animation:boolean,
-	stepCount:number
+	stepCount:number,
 }
