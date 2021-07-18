@@ -3,9 +3,8 @@ import { AbstractView } from '../views/AbstractView';
 import { Deer } from '../views/deer';
 import { Fox } from '../views/fox';
 import { Skyline } from '../views/Skyline';
-
-
-import Line from './../comp/line';
+import { Compass } from '../views/Compass';
+import { ToBeDone } from '../views/ToBeDone';
 
 export default class MainController {
 	container:any;
@@ -71,6 +70,12 @@ export default class MainController {
 			case 'skyline':
 				_object = new Skyline(this.container);
 			break;
+			case 'tobedone':
+				_object = new ToBeDone(this.container);
+			break;
+			case 'compass':
+				_object = new Compass(this.container);
+			break;
 			default:
 				console.error('wat?');
 		}
@@ -81,13 +86,11 @@ export default class MainController {
 	}
 
 	removeView(pName:string){
-		console.log('remo', pName);
-		var _indexToRemove = -1,
-			_objectNames = ['deer', 'fox', 'skyline'];
+		var _indexToRemove = -1;
+
 		for(var _i = 0; _i < this.objectList.length; _i++){
 			var _o = this.objectList[_i];
 
-			// if(_objectNames.indexOf((_o.constructor.name + '').toLowerCase()) !== -1){
 			if((_o.constructor.name + '').toLowerCase() === pName){
 				_o.destroy();
 				_indexToRemove = _i;

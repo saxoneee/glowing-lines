@@ -8,7 +8,8 @@ export default class OptionsController {
 		this.view.appendChild(this.getOption('Deer', 'deer', false));
 		this.view.appendChild(this.getOption('Fox', 'fox', false));
 		this.view.appendChild(this.getOption('Skyline', 'skyline', false));
-		this.view.appendChild(this.getOption('Morph', 'morph', true));
+		this.view.appendChild(this.getOption('Morph', 'tobedone', true));
+		this.view.appendChild(this.getOption('Compass', 'compass', true));
 
 	}
 
